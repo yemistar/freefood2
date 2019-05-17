@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+            <android.support.v7.widget.CardView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    android:id="@+id/eventCard">
+                <TextView android:layout_width="300dp" android:layout_height="wrap_content"
+                          android:id="@+id/eventName"
+                          android:text="Yemi Organization"
+                          android:textAppearance="?android:textAppearanceLarge"
+                          android:textAlignment="center"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.design.card.MaterialCardView
+                    android:id="@+id/eventImport_info"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/eventCard"
+                    app:strokeColor="@color/colorAccent"
+                    app:strokeWidth="3dp"
+                    app:cardElevation="5dp">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                   <!--  Location Layout -->
+                    <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/Locatio_Lout">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="LOCATION :"
+                                android:id="@+id/L_text"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="2"
+                                android:textAppearance="?android:textAppearanceSmall"/>
+
+
+                        <android.support.design.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/location"
+                                android:layout_marginRight="5dp"
+                                app:cardElevation="10dp"
+                                app:strokeColor="@color/colorAccent"
+                                app:strokeWidth="2dp"
+
+                                android:layout_alignParentRight="true">
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:textAlignment="center"
+                                      android:text="Coover"
+                                      android:id="@+id/LocatonText"
+                                      android:textAppearance="?android:textAppearanceMedium"
+                            />
+
+                        </android.support.design.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                   <!--  Day Layout -->
+                    <LinearLayout
+                            android:layout_below="@+id/Locatio_Lout"
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/Day_Lout">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Day :"
+                                android:id="@+id/D_text"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="2"
+                                android:textAppearance="?android:textAppearanceSmall"/>
+
+
+                        <android.support.design.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:id="@+id/day"
+                                android:layout_marginRight="5dp"
+                                app:cardElevation="10dp"
+                                app:strokeColor="@color/colorAccent"
+                                app:strokeWidth="2dp"
+
+                                android:layout_alignParentRight="true">
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:textAlignment="center"
+                                      android:id="@+id/DayText"
+                                      android:text="Monday may 12th 2019"
+                                      android:textAppearance="?android:textAppearanceMedium"
+                            />
+
+                        </android.support.design.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                   <!--  Time Layout-->
+                    <LinearLayout
+                            android:layout_below="@+id/Day_Lout"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/Time_Lout">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Time :"
+                                android:id="@+id/T_text"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="2"
+                                android:textAppearance="?android:textAppearanceMedium"/>
+
+
+                        <android.support.design.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:id="@+id/time"
+                                android:layout_marginRight="5dp"
+                                app:cardElevation="10dp"
+                                app:strokeColor="@color/colorAccent"
+                                app:strokeWidth="2dp"
+
+                                android:layout_alignParentRight="true">
+                            <TextView android:layout_width="match_parent"
+                                      android:layout_height="wrap_content"
+                                      android:textAlignment="center"
+                                      android:id="@+id/TimeText"
+                                      android:text="12pm-1pm"
+                                      android:textAppearance="?android:textAppearanceMedium"
+                            />
+
+                        </android.support.design.card.MaterialCardView>
+
+                    </LinearLayout>
+
+
+
+
+                </RelativeLayout>
+
+
+
+            </android.support.design.card.MaterialCardView>
+
+
+            <!--  FOOD SENTENCE LAYOUT  -->
+            <android.support.design.card.MaterialCardView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/Food_Card"
+                    android:layout_below="@+id/eventImport_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    app:cardElevation="10dp"
+                    app:strokeColor="@color/colorAccent"
+                    app:strokeWidth="3dp"
+            >
+                <LinearLayout
+
+                        android:id="@+id/food_senL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                    >
+                    <!--  HEADER -->
+                    <android.support.v7.widget.CardView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardElevation="10dp"
+                            app:cardBackgroundColor="@color/colorAccent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                        >
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="FOOD SENTENCE"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textAlignment="center"
+                        />
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:id="@+id/food_sentenceText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <!--  EMAIL SENTENCE-->
+            <android.support.design.card.MaterialCardView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/EMAIL_Card"
+                    android:layout_below="@+id/Food_Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    app:cardElevation="10dp"
+                    app:strokeColor="@color/colorAccent"
+                    app:strokeWidth="3dp"
+            >
+                <LinearLayout
+
+                        android:id="@+id/email_senL"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                >
+                    <!--  HEADER -->
+                    <android.support.v7.widget.CardView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardElevation="10dp"
+                            app:cardBackgroundColor="@color/colorAccent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                    >
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="EMAIL SENTENCE"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textAlignment="center"
+                        />
+
+                    </android.support.v7.widget.CardView>
+
+                    <LinearLayout
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:id="@+id/email_sentenceText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <!--  EDIT EVENT-->
+            <android.support.design.card.MaterialCardView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/EDIT_Card"
+                    android:layout_below="@+id/EMAIL_Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    app:cardElevation="10dp"
+                    app:strokeColor="@color/colorAccent"
+                    app:strokeWidth="3dp"
+            >
+                <LinearLayout
+
+                        android:id="@+id/edit_event"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                >
+                    <!--  HEADER -->
+                    <android.support.v7.widget.CardView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardElevation="10dp"
+                            app:cardBackgroundColor="@color/colorAccent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                    >
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UPDATE EVENT"
+                                android:textAppearance="?android:textAppearanceMedium"
+                                android:textAlignment="center"
+                        />
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <!--  FIX TIME-->
+                        <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="1"
+                        >
+                            <TextView
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="TIME"
+                            />
+                            <android.support.design.card.MaterialCardView
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:strokeColor="@color/colorAccent"
+                                    app:strokeWidth="5dp"
+                            >
+                                <EditText
+                                        android:id="@+id/editTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:hint="What is the right time?"
+                                />
+
+                            </android.support.design.card.MaterialCardView>
+                            <Button
+                                    android:id="@+id/fixTime"
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Update"
+                            >
+
+                            </Button>
+                        </LinearLayout>
+                        <!--  FIX DATE-->
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="1"
+                        >
+                            <TextView
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                            />
+                            <android.support.design.card.MaterialCardView
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:strokeColor="@color/colorAccent"
+                                    app:strokeWidth="5dp"
+                            >
+                                <EditText
+                                        android:id="@+id/editDate"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:hint="What is the right date?"
+                                />
+
+                            </android.support.design.card.MaterialCardView>
+                            <Button
+                                    android:id="@+id/fixDate"
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Update"
+                            >
+
+                            </Button>
+                        </LinearLayout>
+
+                        <!--  FIX LOCATION-->
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="1"
+                        >
+                            <TextView
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="LOCATION"
+                            />
+                            <android.support.design.card.MaterialCardView
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:strokeColor="@color/colorAccent"
+                                    app:strokeWidth="5dp"
+                            >
+                                <EditText
+                                        android:id="@+id/editLocation"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:hint="What is the right location?"
+                                />
+
+                            </android.support.design.card.MaterialCardView>
+                            <Button
+                                    android:id="@+id/fixLocation"
+                                    android:layout_weight="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Update"
+                            >
+
+                            </Button>
+                        </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+
+
+
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

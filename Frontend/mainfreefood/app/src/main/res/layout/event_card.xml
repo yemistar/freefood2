@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.design.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            app:strokeColor="@color/colorAccent"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="2dp"
+            app:strokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.CardView"
+            >
+        <!--Main wrap-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <!--First side-->
+            <RelativeLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="10dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/Organization"
+                    android:text="Yemi club"
+                    style="@style/textstyle"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/food"
+                    android:text="Pizza"
+                    android:layout_below="@+id/Organization"
+                    style="@style/midtextstyle"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/time"
+                    android:text="Wensday 20th at 2pm"
+                    android:layout_below="@id/food"
+                          style="@style/midtextstyle"/>
+
+            </RelativeLayout>
+
+            <!--Second side-->
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center">
+                <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="130dp"
+                        app:cardCornerRadius="50dp"
+                        app:cardBackgroundColor="@color/colorAccent"
+
+                        >
+                    <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                        android:src="@drawable/ic_arrow_forward_black_24dp"
+                    android:scaleType="center"/>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.card.MaterialCardView>
+
+</LinearLayout>
