@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.samples.petclinic.Event.EventRepository;
 import org.springframework.stereotype.Service;
 
 import edu.stanford.nlp.ling.CoreLabel;
@@ -30,8 +29,7 @@ import edu.stanford.nlp.util.CoreMap;
  */
 @Service 
 public class ParseEmail {
-	@Autowired
-    EventRepository eventRepository;
+
 	 private final Logger logger = LoggerFactory.getLogger(ParseEmail.class);
 	static StanfordCoreNLP stanfordcorenlp=Pipeline.getInstance();
 	

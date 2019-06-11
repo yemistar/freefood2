@@ -5,16 +5,10 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.samples.petclinic.Event.Event;
-import org.springframework.samples.petclinic.Event.EventRepository;
-import org.springframework.samples.petclinic.Event.EventService;
-import org.springframework.samples.petclinic.nlpcore.NlpFunctions;
 import org.springframework.samples.petclinic.owner.OwnerRepository;
 import org.springframework.samples.petclinic.owner.Owners;
 
-import java.security.acl.Owner;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;

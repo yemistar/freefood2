@@ -20,7 +20,7 @@ public class Pipeline {
 		props=new Properties();
 		props.setProperty("annotators", propertiesName);
 	}
-	//@Bean(name="stanfordcorenlp")
+
 	public static StanfordCoreNLP getInstance() {
 		if(stanfordcorenlp==null) {
 			stanfordcorenlp= new StanfordCoreNLP(props);
