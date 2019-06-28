@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.samples.petclinic.Event.EventInfo;
 import org.springframework.stereotype.Service;
 
 import edu.stanford.nlp.ling.CoreLabel;
@@ -34,6 +35,9 @@ public class ParseEmail {
 	static StanfordCoreNLP stanfordcorenlp=Pipeline.getInstance();
 	
 	static HashMap<Integer,List<Tripple>> map=new HashMap<>();
+
+    static List<EventInfo> test= new ArrayList<>();
+
 	
 	//Annotation document = new Annotation(text);
 	private static StringBuilder exp;
@@ -65,6 +69,8 @@ public class ParseEmail {
 	private static List<CoreMap> Organiz_Sen;
 	
 	private List<CoreMap> Place_Sen;
+
+	private int Sentence_Postion=-1;
 	
     
     static {
@@ -129,6 +135,7 @@ public class ParseEmail {
 		DaysList.add("FRIDAY");
 		DaysList.add("SATURDAY");
 		DaysList.add("SUNDAY");
+		//DaysList.add("NEXT");
 	}
 
 	
@@ -241,21 +248,29 @@ public class ParseEmail {
 		
 	}
 
-	public void getALL2(String text,List<String>wordToken, List<String>wordPOS, List<String>wordNER){
+	public void getALL2(String text){
 		Annotation document = new Annotation(text);
 		stanfordcorenlp.annotate(document);
 		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-		int expcount=0;
+        EventInfo eventInfo= new EventInfo();
+        eventInfo.setRoomNUmber("TEST");
+        test.add(eventInfo);
+
+        boolean foundNER=false;
 		int count=0;
+
 
 
 		for(CoreMap sentence: sentences) {
 			// traversing the words in the current sentence
 			// a CoreLabel is a CoreMap with additional token-specific methods
+            Sentence_Postion++;
 
-			expcount++;
+
+
 			List<Tripple> tripples=new ArrayList<>();
 			for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
+
 
 				// this is the text of the token
 				String word = token.get(TextAnnotation.class);
@@ -263,20 +278,171 @@ public class ParseEmail {
 				// this is the POS tag of the token
 				String pos = token.get(PartOfSpeechAnnotation.class);
 
+
 				// this is the NER label of the token
 				String ner = token.get(NamedEntityTagAnnotation.class);
-				if(pos.equals("NNP") || pos.equals("CD")){
+				//System.out.println(word +" --- "+ner);
+				if(ner.equals("DATE") || ner.equals("TIME")||pos.equals("CD") ){
+					foundNER=true;
+                    System.out.println(word +" --- "+ner);
+				    SetEventInfo(count,ner,pos,word);
 					tripples.add(new Tripple(ner,pos,word));
 				}
 
 
+
 			}//end of forloop
 			map.put(count,tripples);
-			count++;
+			if(foundNER){
+				count++;
+				foundNER=false;
+			}
+
 		}
+        Sentence_Postion=-1;
 
 	}
 
+
+    /**
+     *
+     * @param count
+     * @param ner
+     * @param pos
+     * @param word
+     */
+
+	void SetEventInfo(int count, String ner, String pos, String word){
+
+	    System.out.println("Length=="+count);
+
+	    switch (ner){
+            case "DATE":
+
+                updateList(count,word);
+
+                break;
+
+			case "TIME": case "CD":
+				boolean ispostgood=getListPost(count);
+				int isTime=4;
+				if(ispostgood){
+					isPosNull(word,isTime,count);
+				}else{
+					Pos_is_Null(word,isTime,count);
+				}
+
+                break;
+        }
+    }
+
+    private int Month_or_day(String word){
+	    if(List_Month.contains(word) || List_Month.contains(word.toUpperCase())){
+	        return 1;
+        }else if(DaysList.contains(word) || DaysList.contains(word.toUpperCase())){
+	        return 2;
+        }
+	    return 3;
+    }
+    private boolean getListPost(int count){
+		if(test.size()==count+1){
+			return true;
+		}
+		return false;
+	}
+
+	private void isPosNull(String word, int type,int count){
+		final int isMonth=1;
+		final int isDay=2;
+		final int isDateOfMonth=3;
+		final int isTime=4;
+		switch (type){
+
+			case isMonth :
+				if(test.get(count).getMonth()==null){
+					test.get(count).setMonth(word);
+				}else {
+					String temp=test.get(count).getMonth();
+					temp+=" "+word;
+					test.get(count).setMonth(temp);
+				}
+				break;
+
+			case isDay:
+				if(test.get(count).getDay()==null){
+					test.get(count).setDay(word);
+				}else {
+					String temp=test.get(count).getDay();
+					temp+=" "+word;
+					test.get(count).setDay(temp);
+				}
+				break;
+
+			case isDateOfMonth:
+				if(test.get(count).getDateOfMonth()==null){
+					test.get(count).setDateOfMonth(word);
+				}else {
+					String temp=test.get(count).getDateOfMonth();
+					temp+=" "+word;
+					test.get(count).setDateOfMonth(temp);
+				}
+				break;
+			case isTime:
+				if(test.get(count).getTime()==null){
+					test.get(count).setTime(word);
+				}else {
+					String temp=test.get(count).getTime();
+					temp+=" "+word;
+					test.get(count).setTime(temp);
+				}
+				break;
+
+
+		}
+	}
+	private void Pos_is_Null(String word, int type,int count){
+		final int isMonth=1;
+		final int isDay=2;
+		final int isDateOfMonth=3;
+		final int isTime=4;
+		switch (type){
+
+			case isMonth :
+				EventInfo month =new EventInfo();
+				month.setMonth(word);
+				test.add(count,month);
+				break;
+
+			case isDay:
+				EventInfo day =new EventInfo();
+				day.setDay(word);
+				test.add(count,day);
+				break;
+
+			case isDateOfMonth:
+				EventInfo dateofmonth =new EventInfo();
+				dateofmonth.setDateOfMonth(word);
+				test.add(count,dateofmonth);
+				break;
+			case isTime :
+				EventInfo time =new EventInfo();
+				time.setTime(word);
+				test.add(count,time);
+				break;
+
+		}
+	}
+
+    private void updateList(int count,String word){
+
+		boolean ispostgood=getListPost(count);
+		int isWhat=Month_or_day(word);
+		if(ispostgood){
+			isPosNull(word,isWhat,count);
+		}else{
+			Pos_is_Null(word,isWhat,count);
+		}
+	}
 	
 	/**
 	 * 
@@ -382,6 +548,10 @@ public class ParseEmail {
 	public List<CoreMap> getOrganiz_Sen() {
 		return Organiz_Sen;
 	}
+
+	public List<EventInfo> getTest(){
+	    return test;
+    }
 
 	public static HashMap<Integer, List<Tripple>> getMap() {
 		return map;

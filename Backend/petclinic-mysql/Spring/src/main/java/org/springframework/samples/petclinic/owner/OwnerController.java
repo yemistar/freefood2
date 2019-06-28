@@ -18,6 +18,8 @@ package org.springframework.samples.petclinic.owner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.Event.EventInfo;
+import org.springframework.samples.petclinic.nlpcore.ParseEmail;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +43,9 @@ class OwnerController {
 
     @Autowired
     OwnerRepository ownersRepository;
+
+    @Autowired
+    ParseEmail parseEmail;
 
     private final Logger logger = LoggerFactory.getLogger(OwnerController.class);
     
@@ -96,6 +101,12 @@ class OwnerController {
     	ownersRepository.save(owner);
 		return "user update";
 	}
-	
+
+    @RequestMapping(method=RequestMethod.POST, path="/freefood/test")
+    public List<EventInfo> test(@RequestBody String text) {
+        parseEmail.getALL2(text);
+
+        return parseEmail.getTest();
+    }
 
 }
